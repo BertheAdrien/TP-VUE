@@ -1,0 +1,32 @@
+name: CI/CD TP Vue
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  build-and-deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+
+      - name: Login Docker Hub
+        run: echo "${{ secrets.DOCKER_PASSWORD }}" | docker login -u "${{ secrets.DOCKER_USERNAME }}" --password-stdin
+
+      - name: Build image
+        run: docker build -t ${{ secrets.DOCKER_USERNAME }}/tp-vuejs .
+
+      - name: Push image
+        run: docker push ${{ secrets.DOCKER_USERNAME }}/tp-vuejs
+
+      - name: Deploy on VPS
+        uses: appleboy/ssh-action@v1.0.0
+        with:
+          host: 193.70.113.80
+          username: root
+          key: ${{ secrets.SSH_PRIVATE_KEY }}
+          script: |
+            bash tp-vuejs/deploy.sh
