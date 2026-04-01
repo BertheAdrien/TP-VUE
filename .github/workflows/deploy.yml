@@ -6,24 +6,19 @@ on:
       - main
 
 jobs:
-  build-and-deploy:
+  deploy:
     runs-on: ubuntu-latest
 
     steps:
       - name: Checkout
         uses: actions/checkout@v3
 
-      - name: Build image
-        run: docker build -t ${{ secrets.DOCKER_USERNAME }}/tp-vuejs .
-
-      - name: Push image
-        run: docker push ${{ secrets.DOCKER_USERNAME }}/tp-vuejs
-
       - name: Deploy on VPS
-        uses: appleboy/ssh-action@v1.0.0
+        uses: appleboy/ssh-action@v1
         with:
           host: 193.70.113.80
-          username: root
+          username: debian
           key: ${{ secrets.SSH_PRIVATE_KEY }}
           script: |
-            bash tp-vuejs/deploy.sh
+            cd /home/debian/tp-vuejs
+            bash deploy.sh
