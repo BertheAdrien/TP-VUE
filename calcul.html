@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <meta charset="UTF-8">
+    <title>TP Vue Compteurs</title>
+</head>
+
+<body>
+
+    <div id="app">
+
+        <h2>Total GLOBAL : {{ total }}</h2>
+        <h3>Dernier bouton cliqué : {{ dernier }}</h3>
+
+        <compteur nom="Compteur +3" :pas="3" @incrementer="majTotal"></compteur>
+
+        <compteur nom="Compteur +5" :pas="5" @incrementer="majTotal"></compteur>
+
+    </div>
+
+    <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+
+    <script>
+        const { createApp } = Vue
+        const Compteur = {
+            props: {
+                pas: Number,
+                nom: String
+            },
+            data() {
+                return {
+                    compteurLocal: 0
+                }
+            },
+            methods: {
+                incrementer() {
+                    this.compteurLocal += this.pas
+                    this.$emit('incrementer', this.pas, this.nom)
+                }
+            },
+            template: `
+    <div>
+      {{ nom }} : {{ compteurLocal }}
+      <button @click="incrementer">+{{ pas }}</button>
+      <hr>
+    </div>
+  `
+        }
+        createApp({
+            components: {
+                'compteur': Compteur
+            },
+            data() {
+                return {
+                    total: 0,
+                    dernier: ''
+                }
+            },
+            methods: {
+                majTotal(valeur, nomCompteur) {
+                    this.total += valeur
+                    this.dernier = nomCompteur
+                }
+            }
+        }).mount('#app')
+
+    </script>
+
+</body>
+
+</html>

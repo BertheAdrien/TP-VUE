@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Composants Vue</title>
+</head>
+
+<body>
+	<div id="app">
+		<my-message text="Message 1" bg-color="blue"></my-message>
+		<my-message text="Message 2" bg-color="green"></my-message>
+		<my-message text="Message 3" bg-color="pink"></my-message>
+		<my-message text="Message 4"></my-message> 
+	</div>
+
+	<script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+	<script>
+		const { createApp } = Vue
+
+		const MyMessage = {
+			props: {
+				text: String,
+				bgColor: {
+					type: String,
+					default: 'gray'
+				}
+			},
+			template: `
+        <div :style="{ backgroundColor: bgColor, padding: '10px', margin: '5px', borderRadius: '5px' }">
+          Bonjour ! {{ text }}
+        </div>
+      `
+		}
+
+		createApp({
+			components: {
+				'my-message': MyMessage
+			}
+		}).mount('#app')
+	</script>
+</body>
+
+</html>
