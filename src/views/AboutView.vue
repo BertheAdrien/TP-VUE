@@ -1,6 +1,6 @@
 <template>
   <div class="about">
-    <h1>CA MARCHE ???????</h1>
+    <h1>CA MARCHE ??????STP*IL TE PLAÎT ?</h1>
   </div>
 </template>
 
