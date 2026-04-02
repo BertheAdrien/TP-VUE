@@ -17,6 +17,7 @@ jobs:
           username: debian
           key: ${{ secrets.VPS_SSH_KEY }}
           script: |
+            pwd
             cd /home/debian
 
             git clone git@github.com:BertheAdrien/TP-VUE.git vue-app -c core.sshCommand="ssh -i ~/.ssh/github_deploy"
