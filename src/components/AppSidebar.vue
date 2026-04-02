@@ -50,7 +50,7 @@
       </div>
 
       <div class="sidebar__section">
-        <p class="sidebar__section-label">C LE TEST ULTIME 2</p>
+        <p class="sidebar__section-label">ADMIN</p>
         <ul>
           <li>
             <a href="#" class="sidebar__link" :class="{ 'sidebar__link--active': currentRoute === 'users' }" @click.prevent="$emit('navigate', 'users')">
