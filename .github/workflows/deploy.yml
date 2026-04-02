@@ -33,4 +33,4 @@ jobs:
             docker stop vue-app || true
             docker rm vue-app || true
 
-            docker run -d -p 80:80 --name vue-app vue-app
+            docker run -d -p 8080:80 --name vue-app vue-app
