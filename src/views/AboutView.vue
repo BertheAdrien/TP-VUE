@@ -1,6 +1,6 @@
 <template>
   <div class="about">
-    <h1>CA marche please</h1>
+    <h1>CA marche OUEOUZPOEUPOAZEJ</h1>
   </div>
 </template>
 
