@@ -1,162 +1,154 @@
 <template>
-  <div class="group-management">
-    <div class="empty-state">
-      <div class="empty-state__icon">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
-          <path stroke-linecap="round" stroke-linejoin="round" d="M7 3a1 1 0 000 2h6a1 1 0 100-2H7zM4 7a1 1 0 011-1h10a1 1 0 110 2H5a1 1 0 01-1-1zM2 11a2 2 0 012-2h12a2 2 0 012 2v4a2 2 0 01-2 2H4a2 2 0 01-2-2v-4z"/>
-        </svg>
-      </div>
-      <h2>Group Management</h2>
-      <p>Cette section est en cours de développement.</p>
-      <button class="empty-state__btn">
-        <svg viewBox="0 0 20 20" fill="currentColor">
-          <path fill-rule="evenodd" d="M10 3a1 1 0 011 1v5h5a1 1 0 110 2h-5v5a1 1 0 11-2 0v-5H4a1 1 0 110-2h5V4a1 1 0 011-1z" clip-rule="evenodd"/>
-        </svg>
-        Créer un groupe
-      </button>
-    </div>
-
-    <!-- Placeholder cards -->
-    <div class="cards">
-      <div class="card card--ghost" v-for="i in 3" :key="i">
-        <div class="card__avatar-row">
-          <div class="ghost-circle" v-for="j in 4" :key="j"></div>
+  <div class="min-h-screen bg-gradient-to-br from-slate-50 to-slate-100">
+    <div class="container mx-auto p-6 max-w-7xl">
+      <!-- Header -->
+      <div class="flex items-center justify-between mb-8">
+        <div>
+          <h1 class="text-4xl font-bold bg-gradient-to-r from-slate-900 to-slate-700 bg-clip-text text-transparent">Gestion des Groupes</h1>
+          <p class="text-slate-600 mt-2 text-lg">Organisez et gérez vos groupes d'utilisateurs</p>
         </div>
-        <div class="ghost-line ghost-line--title"></div>
-        <div class="ghost-line ghost-line--sub"></div>
+        <Button class="flex items-center gap-2 bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-700 hover:to-indigo-700 shadow-lg">
+          <Plus class="w-4 h-4" />
+          Nouveau groupe
+        </Button>
+      </div>
+
+      <!-- Search and filters -->
+      <Card class="mb-8 border-0 shadow-xl bg-white/80 backdrop-blur-sm">
+        <CardContent class="p-6">
+          <div class="flex flex-col sm:flex-row gap-4">
+            <div class="flex-1">
+              <div class="relative">
+                <Search class="absolute left-4 top-1/2 transform -translate-y-1/2 w-5 h-5 text-slate-400" />
+                <input
+                  type="text"
+                  placeholder="Rechercher un groupe..."
+                  class="w-full pl-12 pr-4 py-3 border-0 rounded-xl bg-slate-50 text-slate-900 placeholder:text-slate-400 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:bg-white transition-all"
+                />
+              </div>
+            </div>
+            <Button variant="outline" class="flex items-center gap-2 border-slate-200 bg-white hover:bg-slate-50 hover:border-slate-300 rounded-xl px-6">
+              <Filter class="w-4 h-4" />
+              Filtres
+            </Button>
+          </div>
+        </CardContent>
+      </Card>
+
+      <!-- Groups grid -->
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+        <!-- Group card 1 -->
+        <Card class="group hover:shadow-2xl transition-all duration-300 hover:-translate-y-1 border-0 bg-white shadow-lg">
+          <CardContent class="p-8">
+            <div class="flex items-start justify-between mb-6">
+              <div class="w-16 h-16 rounded-2xl bg-gradient-to-br from-blue-500 to-blue-600 flex items-center justify-center shadow-lg">
+                <Users class="w-8 h-8 text-white" />
+              </div>
+              <Button variant="ghost" size="sm" class="opacity-0 group-hover:opacity-100 transition-opacity">
+                <MoreHorizontal class="w-5 h-5 text-slate-400" />
+              </Button>
+            </div>
+            
+            <h3 class="text-xl font-bold text-slate-900 mb-3">Équipe de Développement</h3>
+            <p class="text-slate-600 mb-6 leading-relaxed">Développeurs frontend et backend travaillant sur les projets web</p>
+            
+            <div class="flex items-center justify-between">
+              <div class="flex -space-x-3">
+                <div class="w-8 h-8 rounded-full bg-gradient-to-br from-blue-400 to-blue-600 border-3 border-white shadow-md"></div>
+                <div class="w-8 h-8 rounded-full bg-gradient-to-br from-emerald-400 to-emerald-600 border-3 border-white shadow-md"></div>
+                <div class="w-8 h-8 rounded-full bg-gradient-to-br from-purple-400 to-purple-600 border-3 border-white shadow-md"></div>
+                <div class="w-8 h-8 rounded-full bg-gradient-to-br from-slate-400 to-slate-600 border-3 border-white shadow-md flex items-center justify-center">
+                  <span class="text-xs text-white font-semibold">+5</span>
+                </div>
+              </div>
+              <div class="text-right">
+                <span class="text-2xl font-bold text-slate-900">8</span>
+                <p class="text-sm text-slate-500">membres</p>
+              </div>
+            </div>
+          </CardContent>
+        </Card>
+
+        <!-- Group card 2 -->
+        <Card class="group hover:shadow-2xl transition-all duration-300 hover:-translate-y-1 border-0 bg-white shadow-lg">
+          <CardContent class="p-8">
+            <div class="flex items-start justify-between mb-6">
+              <div class="w-16 h-16 rounded-2xl bg-gradient-to-br from-emerald-500 to-emerald-600 flex items-center justify-center shadow-lg">
+                <CheckCircle class="w-8 h-8 text-white" />
+              </div>
+              <Button variant="ghost" size="sm" class="opacity-0 group-hover:opacity-100 transition-opacity">
+                <MoreHorizontal class="w-5 h-5 text-slate-400" />
+              </Button>
+            </div>
+            
+            <h3 class="text-xl font-bold text-slate-900 mb-3">Marketing Digital</h3>
+            <p class="text-slate-600 mb-6 leading-relaxed">Équipe chargée des campagnes marketing et des réseaux sociaux</p>
+            
+            <div class="flex items-center justify-between">
+              <div class="flex -space-x-3">
+                <div class="w-8 h-8 rounded-full bg-gradient-to-br from-pink-400 to-pink-600 border-3 border-white shadow-md"></div>
+                <div class="w-8 h-8 rounded-full bg-gradient-to-br from-indigo-400 to-indigo-600 border-3 border-white shadow-md"></div>
+                <div class="w-8 h-8 rounded-full bg-gradient-to-br from-amber-400 to-amber-600 border-3 border-white shadow-md"></div>
+              </div>
+              <div class="text-right">
+                <span class="text-2xl font-bold text-slate-900">3</span>
+                <p class="text-sm text-slate-500">membres</p>
+              </div>
+            </div>
+          </CardContent>
+        </Card>
+
+        <!-- Group card 3 -->
+        <Card class="group hover:shadow-2xl transition-all duration-300 hover:-translate-y-1 border-0 bg-white shadow-lg">
+          <CardContent class="p-8">
+            <div class="flex items-start justify-between mb-6">
+              <div class="w-16 h-16 rounded-2xl bg-gradient-to-br from-purple-500 to-purple-600 flex items-center justify-center shadow-lg">
+                <Settings class="w-8 h-8 text-white" />
+              </div>
+              <Button variant="ghost" size="sm" class="opacity-0 group-hover:opacity-100 transition-opacity">
+                <MoreHorizontal class="w-5 h-5 text-slate-400" />
+              </Button>
+            </div>
+            
+            <h3 class="text-xl font-bold text-slate-900 mb-3">Support Client</h3>
+            <p class="text-slate-600 mb-6 leading-relaxed">Équipe dédiée à l'assistance et à la satisfaction client</p>
+            
+            <div class="flex items-center justify-between">
+              <div class="flex -space-x-3">
+                <div class="w-8 h-8 rounded-full bg-gradient-to-br from-red-400 to-red-600 border-3 border-white shadow-md"></div>
+                <div class="w-8 h-8 rounded-full bg-gradient-to-br from-blue-400 to-blue-600 border-3 border-white shadow-md"></div>
+                <div class="w-8 h-8 rounded-full bg-gradient-to-br from-teal-400 to-teal-600 border-3 border-white shadow-md"></div>
+                <div class="w-8 h-8 rounded-full bg-gradient-to-br from-slate-400 to-slate-600 border-3 border-white shadow-md flex items-center justify-center">
+                  <span class="text-xs text-white font-semibold">+2</span>
+                </div>
+              </div>
+              <div class="text-right">
+                <span class="text-2xl font-bold text-slate-900">5</span>
+                <p class="text-sm text-slate-500">membres</p>
+              </div>
+            </div>
+          </CardContent>
+        </Card>
+      </div>
+
+      <!-- Empty state overlay (hidden by default) -->
+      <div v-if="false" class="text-center py-16">
+        <div class="w-24 h-24 rounded-2xl bg-gradient-to-br from-slate-200 to-slate-300 flex items-center justify-center mx-auto mb-8">
+          <Users class="w-12 h-12 text-slate-400" />
+        </div>
+        <h3 class="text-2xl font-bold text-slate-900 mb-4">Aucun groupe trouvé</h3>
+        <p class="text-slate-600 mb-8 text-lg">Commencez par créer votre premier groupe</p>
+        <Button class="flex items-center gap-2 mx-auto bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-700 hover:to-indigo-700 shadow-lg">
+          <Plus class="w-4 h-4" />
+          Créer un groupe
+        </Button>
       </div>
     </div>
   </div>
 </template>
 
-<style scoped>
-.group-management {
-  padding: 28px;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 36px;
-  min-height: calc(100vh - 60px);
-}
-
-/* Empty state */
-.empty-state {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  text-align: center;
-  padding: 48px 32px 36px;
-  background: #fff;
-  border-radius: 16px;
-  border: 1px solid #f0f0f0;
-  max-width: 440px;
-  width: 100%;
-}
-
-.empty-state__icon {
-  width: 60px;
-  height: 60px;
-  border-radius: 16px;
-  background: #f0eeff;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  margin-bottom: 20px;
-}
-
-.empty-state__icon svg {
-  width: 28px;
-  height: 28px;
-  color: #6c47ff;
-}
-
-.empty-state h2 {
-  margin: 0 0 10px;
-  font-size: 18px;
-  font-weight: 700;
-  color: #1a1a2e;
-}
-
-.empty-state p {
-  margin: 0 0 24px;
-  font-size: 14px;
-  color: #9ca3af;
-  line-height: 1.6;
-}
-
-.empty-state__btn {
-  display: inline-flex;
-  align-items: center;
-  gap: 7px;
-  padding: 9px 20px;
-  background: #1a1a2e;
-  color: #fff;
-  border: none;
-  border-radius: 9px;
-  font-size: 13.5px;
-  font-weight: 600;
-  cursor: pointer;
-  transition: background 0.15s;
-  font-family: inherit;
-}
-
-.empty-state__btn:hover { background: #6c47ff; }
-.empty-state__btn svg { width: 15px; height: 15px; }
-
-/* Ghost cards */
-.cards {
-  display: flex;
-  gap: 16px;
-  flex-wrap: wrap;
-  justify-content: center;
-  width: 100%;
-  max-width: 860px;
-}
-
-.card--ghost {
-  flex: 1;
-  min-width: 220px;
-  max-width: 280px;
-  background: #fff;
-  border: 1px solid #f0f0f0;
-  border-radius: 14px;
-  padding: 20px;
-  display: flex;
-  flex-direction: column;
-  gap: 12px;
-}
-
-.card__avatar-row {
-  display: flex;
-  gap: -6px;
-}
-
-.ghost-circle {
-  width: 32px;
-  height: 32px;
-  border-radius: 50%;
-  background: #f0f0f5;
-  margin-right: -8px;
-  border: 2px solid #fff;
-  animation: pulse 1.6s ease-in-out infinite;
-}
-
-.ghost-circle:nth-child(2) { animation-delay: 0.1s; }
-.ghost-circle:nth-child(3) { animation-delay: 0.2s; }
-.ghost-circle:nth-child(4) { animation-delay: 0.3s; }
-
-.ghost-line {
-  height: 10px;
-  border-radius: 6px;
-  background: #f0f0f5;
-  animation: pulse 1.6s ease-in-out infinite;
-}
-
-.ghost-line--title { width: 70%; }
-.ghost-line--sub { width: 45%; animation-delay: 0.15s; }
-
-@keyframes pulse {
-  0%, 100% { opacity: 1; }
-  50% { opacity: 0.45; }
-}
-</style>
+<script setup>
+import { Card, CardContent } from "../components/ui/card"
+import { Button } from "../components/ui/button"
+import { Plus, Search, Filter, Users, CheckCircle, Settings, MoreHorizontal } from 'lucide-vue-next'
+</script>
