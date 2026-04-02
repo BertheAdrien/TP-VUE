@@ -1,4 +1,4 @@
-name: CI/CD TP Vue
+name: Deploy Vue App
 
 on:
   push:
@@ -10,15 +10,27 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Checkout
-        uses: actions/checkout@v3
-
-      - name: Deploy on VPS
-        uses: appleboy/ssh-action@v1
+      - name: Deploy via SSH
+        uses: appleboy/ssh-action@v1.0.0
         with:
-          host: 193.70.113.80
+          host: ${{ secrets.VPS_HOST }}
           username: debian
-          key: ${{ secrets.SSH_PRIVATE_KEY }}
+          key: ${{ secrets.VPS_SSH_KEY }}
           script: |
-            cd /home/debian/tp-vuejs
-            bash deploy.sh
+            cd /home/debian
+
+            if [ ! -d "vue-app/.git" ]; then
+              git clone https://github.com/BertheAdrien/TP-VUE.git vue-app
+            fi
+
+            cd vue-app
+
+            git config --global --add safe.directory /home/debian/vue-app
+            git pull origin main
+
+            docker build --no-cache -t vue-app .
+
+            docker stop vue-app || true
+            docker rm vue-app || true
+
+            docker run -d -p 80:80 --name vue-app vue-app
