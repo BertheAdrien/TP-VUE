@@ -19,9 +19,7 @@ jobs:
           script: |
             cd /home/debian
 
-            if [ ! -d "vue-app/.git" ]; then
-              git clone git@github.com:BertheAdrien/TP-VUE.git vue-app -c core.sshCommand="ssh -i ~/.ssh/github_deploy"
-            fi
+            git clone git@github.com:BertheAdrien/TP-VUE.git vue-app -c core.sshCommand="ssh -i ~/.ssh/github_deploy"
 
             cd vue-app
 
