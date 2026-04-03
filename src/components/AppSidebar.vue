@@ -8,7 +8,7 @@
           <path d="M1 15L12 21L23 15" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
         </svg>
       </div>
-      <span class="sidebar__logo-text">EclassHub</span>
+      <span class="sidebar__logo-text">GavaLab</span>
     </div>
 
     <!-- Navigation -->
