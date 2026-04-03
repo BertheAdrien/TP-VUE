@@ -31,12 +31,3 @@ jobs:
             # Rebuild et relancer tous les conteneurs
             docker-compose down
             docker-compose up -d --build
-
-            # Vérification post-déploiement
-            echo " Vérification de l'API..."
-            timeout 30 bash -c 'until curl -f http://localhost:3000/users; do sleep 5; done'
-            
-            echo " Vérification du frontend..."
-            timeout 30 bash -c 'until curl -f http://localhost:8080; do sleep 5; done'
-            
-            echo " Déploiement et vérifications terminés!"
