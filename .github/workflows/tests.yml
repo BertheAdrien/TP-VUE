@@ -19,8 +19,13 @@ jobs:
         with:
           node-version: 20
 
+      - name: Install pnpm
+        uses: pnpm/action-setup@v2
+        with:
+          version: latest
+
       - name: Install dependencies
-        run: npm ci
+        run: pnpm install --frozen-lockfile
 
       - name: Run tests
         run: npx vitest run frontend.test.js --coverage
