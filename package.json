@@ -24,7 +24,7 @@
   },
   "devDependencies": {
     "@vitejs/plugin-vue": "^5.2.1",
-    "@vitest/coverage-v8": "^4.1.2",
+    "@vitest/coverage-v8": "^2.1.9",
     "@vue/test-utils": "^2.4.6",
     "autoprefixer": "^10.4.20",
     "jsdom": "^25.0.0",
@@ -34,6 +34,6 @@
     "tailwindcss-animate": "^1.0.7",
     "vite": "^6.0.5",
     "vite-plugin-vue-devtools": "^7.7.2",
-    "vitest": "^2.1.8"
+    "vitest": "2.1.9"
   }
 }
