@@ -1,4 +1,4 @@
-name: Deploy Vue App
+name: Deploy Vue + API
 
 on:
   push:
@@ -17,20 +17,17 @@ jobs:
           username: debian
           key: ${{ secrets.VPS_SSH_KEY }}
           script: |
-            cd /home/debian
+            cd /home/debian/vue-app
 
-            if [ ! -d "vue-app/.git" ]; then
-              git clone git@github.com:BertheAdrien/TP-VUE.git vue-app -c core.sshCommand="ssh -i ~/.ssh/github_deploy"
+            # Si le repo n'existe pas encore, le cloner
+            if [ ! -d ".git" ]; then
+              git clone git@github.com:BertheAdrien/TP-VUE.git . -c core.sshCommand="ssh -i ~/.ssh/github_deploy"
             fi
 
-            cd vue-app
-
+            # Pull des dernières modifications
             git config --global --add safe.directory /home/debian/vue-app
             git -c core.sshCommand="ssh -i ~/.ssh/github_deploy -o StrictHostKeyChecking=no" pull
 
-            docker build --no-cache -t vue-app .
-
-            docker stop vue-app || true
-            docker rm vue-app || true
-
-            docker run -d -p 8080:80 --name vue-app vue-app
+            # Rebuild et relancer tous les conteneurs
+            docker-compose down
+            docker-compose up -d --build

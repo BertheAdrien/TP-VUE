@@ -1,23 +1,5 @@
 export const USERS = [
   {
-    id: 1,
-    name: 'Alex Johnson',
-    email: 'alex.j@example.com',
-    role: 'Student',
-    status: 'Active',
-    lastLogin: 'Today, 09:41 AM',
-    avatar: 'https://i.pravatar.cc/40?img=1',
-  },
-  {
-    id: 2,
-    name: 'Sarah Williams',
-    email: 's.williams@example.com',
-    role: 'Teacher',
-    status: 'Active',
-    lastLogin: 'Yesterday, 14:20 PM',
-    avatar: 'https://i.pravatar.cc/40?img=5',
-  },
-  {
     id: 3,
     name: 'Michael Ross',
     email: 'm.ross@example.com',
